@@ -1,0 +1,14 @@
+
+.tag li:hover{
+    background-color: #f06570;
+}
+.tag li:hover a{
+    
+        color: #fff;
+    
+}
+.am-slider .am-slides img {
+    height: 420px;
+    padding-bottom: 0%;
+    display: block
+}

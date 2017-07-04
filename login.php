@@ -12,30 +12,10 @@ require 'header.php';
 </center>
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-    <!-- <h3>登录</h3>
-    <hr>
-    <div class="am-btn-group">
-      <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-qq am-icon-sm"></i> QQ</a>
-      <a href="#" class="am-btn am-btn-success am-btn-sm"><i class="am-icon-wechat am-icon-sm"></i> 微信</a>
-
-      <a href="#" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-weibo am-icon-sm"></i> 新浪微博</a>
-    </div> -->
-    <!-- <br> -->
-    <!-- <br> -->
 <?php
-function checkUserInput($inputString){
-    if (strpos('script', $inputString)!=false){ 
-        return FALSE;
-    }else if (strpos('iframe', $inputString)!=false){
-        return FALSE;
-    }else {
-        return TRUE;
-    }
-};
-function IsSame($ArgvOne,$ArgvTwo,$Force=false){
-     return $Force?$ArgvOne===$ArgvTwo:$ArgvOne==$ArgvTwo;
-};
+require 'base.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     $email=$password='';
     if(empty($_POST['email'])||empty($_POST['password'])){
         //警告 不可为空
@@ -67,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result=mysql_query($sql);
                 if($result!=false){
                     $row = mysql_fetch_array($result);
-                    if($row['password']==$password){
+                    if($row['password']==md5(md5($password))){
                         echo '登录成功';
                         $_SESSION['log_status']=true;
                         $_SESSION['userID']=$row['userID'];
@@ -114,14 +94,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label for="password">密码:</label>
       <input class="am-form-field am-round" type="password" name="password" id="password" value="">
       <br>
-      <label for="remember-me">
-        <input id="remember-me" type="checkbox">
+     <!--  <label for="remember-me">
+        <input id="remember-me" name="remember" type="checkbox">
         记住密码
-      </label>
+      </label> -->
       <br />
       <div class="am-cf">
-        <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-md am-fl am-round">
-        <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-md am-fr am-round">
+        <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-block am-fl am-round">
+        <!-- <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-md am-fr am-round"> -->
       </div>
     </form>
     <hr>

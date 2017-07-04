@@ -42,10 +42,11 @@
 
 <body>
 
+<!-- <header class="am-topbar am-topbar-fixed-top wos-header"> -->
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="#">MYNEWS</a>
+            <a href="index.php">MYNEWS</a>
         </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only"
@@ -84,17 +85,6 @@ else{
 }
 
 ?>
-                <!-- <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
-                    </a>
-                    <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
-                    </ul>
-                </li> -->
             </ul>
 <script type="text/javascript">
     function logout(){
@@ -111,9 +101,21 @@ else{
 </script>
 
 <?php
-if($_SESSION['log_status']){
+if(empty($_SESSION['log_status'])||$_SESSION['log_status']==false){
 ?>
+            <div class="am-topbar-right">
+                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm am-round"onclick="window.location.href='register.php'"><span class="am-icon-pencil"></span> 注册</button>
+            </div>
+
+            <div class="am-topbar-right">
+                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm am-round" onclick="window.location.href='login.php'"><span class="am-icon-user"></span> 登录</button>
+            </div>
             
+
+<?php
+}
+else{
+?>
             <div class="am-topbar-right">
                 <button id="logout-confirm" class="am-btn am-btn-default am-topbar-btn am-btn-sm am-round" onclick="logout()" ><span class="am-icon-sign-out"></span>&nbsp注销</button>
             </div>
@@ -123,17 +125,6 @@ if($_SESSION['log_status']){
             </div>
             <div class="am-topbar-right">
                 <button id="logout-confirm" class="am-btn am-btn-default am-topbar-btn am-btn-sm am-round" onclick="window.location.href='collection.php'"><span class="am-icon-star"></span>&nbsp收藏夹</button>
-            </div>
-<?php
-}
-else{
-?>
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm am-round"onclick="window.location.href='register.php'"><span class="am-icon-pencil"></span> 注册</button>
-            </div>
-
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm am-round" onclick="window.location.href='login.php'"><span class="am-icon-user"></span> 登录</button>
             </div>
 <?php
 }

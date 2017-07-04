@@ -168,13 +168,13 @@ footer a:hover{
     color: #e1652f;
 }
 .tag{
-    background-color:#f5f5f5;
+    /*background-color:#f5f5f5;*/
     margin: 0 0 0 10px;
     padding: 20px;
     padding-bottom: 50px;
 }
 .bgtag{
-    background-color:#f5f5f5;
+    /*background-color:#f5f5f5;*/
     padding: 20px;
     padding-bottom: 50px;
 }
@@ -186,7 +186,7 @@ footer a:hover{
     list-style-type: none;
 }
 .tag .active{
-    background-color: #e1652f;
+    background-color: #f06570;
     color: #fff;
 }
 .tag .active a{
@@ -238,12 +238,13 @@ footer a:hover{
 .newsico{
     color: #ddd;
     position: absolute;
-    margin-top: -30px;
+    margin-top: -25px;
     margin-left: 50%;
 }
 @media only screen and (max-width: 640px) {
     .newsico{
-        margin-left: 65%;
+        /*margin-left: 65%;*/
+        position: relative;
     }
 }
 

@@ -33,9 +33,15 @@
 ?>
     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
         <div class="am-u-sm-5 am-list-thumb">
+<?php
+if($row['pic']){
+?>
             <a target="_blank" href="news.php?id=<?php echo $row['newsID'];?>">
-                <img style="max-height:200px;" src="<?php echo $row['pic'];?>"/>
+                <img style="max-height:200px;" class="am-img-thumbnail am-radius" src="<?php echo $row['pic'];?>"/>
             </a>
+<?php
+}
+?>
         </div>
         <div class=" am-u-sm-7 am-list-main">
             <h3 class="am-list-item-hd"><a target="_blank" href="news.php?id=<?php echo $row['newsID'];?>"><?php echo $row['title'];?></a></h3>
@@ -86,6 +92,7 @@ for ($x=1; $x<=$pageCount; $x++) {
             </div>
         </div>
     </div>
+    <?php require 'hotlabel.php' ?>
 </div>
 
 <?php require 'footer.php' ?>

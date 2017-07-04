@@ -14,7 +14,7 @@
             <li><a href="#">广告及服务</a></li>
             <li><a href="#">友情链接</a></li>
         </ul> -->
-        <p>@Mokoa 1102139175@qq.com<br> 2017 B/S体系软件设计 春夏.</p>
+        <p>All Rights Reserved.<br>@2016-2017 B/S System Software Design<br>Mokoa<br>1102139175@qq.com</p>
     </div>
 </footer>
 </body>

@@ -26,22 +26,27 @@ while($row = mysql_fetch_array($result)){
 ?>
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
                         <div class="am-u-sm-5 am-list-thumb">
+<?php
+if($row['pic']){
+?>
                             <a href="<?php echo 'news.php?id='.$row['newsID']; ?>">
-                                <img style="max-height:200px;" src="<?php echo $row['pic']; ?>"/>
+                                <img style="max-height:200px;" class="am-img-thumbnail am-radius" src="<?php echo $row['pic']; ?>"/>
                             </a>
-
+<?php
+}
+?>
                         </div>
 
                         <div class=" am-u-sm-7 am-list-main">
                             <h3 class="am-list-item-hd"><a href="<?php echo 'news.php?id='.$row['newsID']; ?>"><?php echo $row['title']; ?></a></h3>
                             <div class="am-list-item-text"><?php echo $row['content']; ?></div>
                         </div>
-
                     </li>
                     <div class="newsico am-fr">
                         <i class="am-icon-clock-o"><?php echo $row['time']; ?></i>
-                        <i class="am-icon-hand-pointer-o"><?php echo $row['clicks']; ?></i>
+                        <!-- <i class="am-icon-hand-pointer-o"><?php echo $row['clicks']; ?></i> -->
                     </div>
+
 <?php
 }
 ?>

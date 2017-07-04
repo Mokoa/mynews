@@ -269,7 +269,7 @@ textarea {
 }
 
 a {
-    color: #dd 7e6b
+    color: #dd7e6b
 }
 
 a:focus,
@@ -441,8 +441,8 @@ select {
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     width: 100%;
     max-width: 1300px
 }
@@ -527,8 +527,8 @@ select {
 
 [class*=am-u-] {
     width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     float: left;
     position: relative
 }
@@ -13296,7 +13296,7 @@ tbody.am-collapse.am-in {
 }
 
 .am-list-news-default {
-    margin: 10px
+    margin: 0px
 }
 
 .am-list-news-default .am-g {
@@ -13318,7 +13318,7 @@ tbody.am-collapse.am-in {
 
 .am-list-news-default .am-list .am-list-item-desced {
     padding-top: 1rem;
-    padding-bottom: 1rem
+    padding-bottom: 3rem
 }
 
 .am-list-news-default .am-list .am-list-item-desced>a {
@@ -13337,7 +13337,7 @@ tbody.am-collapse.am-in {
     -webkit-box-orient: vertical;
     line-height: 1.3em;
     -webkit-line-clamp: 2;
-    max-height: 2.6em
+    max-height: 2.5em
 }
 
 .am-list-news-default .am-list .am-list-item-thumb-top .am-list-thumb {
@@ -15923,8 +15923,8 @@ tbody.am-collapse.am-in {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     background-color: transparent;
     border-bottom: 1px solid #dedede;
     line-height: 44px

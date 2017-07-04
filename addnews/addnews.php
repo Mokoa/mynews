@@ -1,18 +1,14 @@
 <?php
 $con = mysql_connect("127.0.0.1:3306","root","root");
-
 if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-
+{
+die('Could not connect: ' . mysql_error());
+}
 mysql_select_db("news", $con);
-
 require_once 'curl.func.php';
- 
 $appkey = '4e3126e08fe8ad8d';//你的appkey
-$channel='头条';//utf8 新闻频道(头条,财经,体育,娱乐,军事,教育,NBA,股票,星座,女性,健康,育儿)
-$url = "http://api.jisuapi.com/news/get?channel=$channel&appkey=$appkey&start=10";
+$channel='女性';//utf8 新闻频道(头条,财经,体育,娱乐,军事,教育,NBA,股票,星座,女性,健康,育儿)
+$url = "http://api.jisuapi.com/news/get?channel=$channel&appkey=$appkey&num=20";
 $result = curlOpen($url);
 $jsonarr = json_decode($result, true);
 if($jsonarr['status'] != 0)
@@ -32,3 +28,4 @@ foreach($result['list'] as $val)
 }
 echo '全部插入';
 mysql_close($con);
+?>

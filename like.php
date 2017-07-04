@@ -4,50 +4,55 @@
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$con = mysql_connect("127.0.0.1:3306","root","root");
-if (!$con)
-{
-die('Could not connect: ' . mysql_error());
-}
-$checkbox_select=$_POST["checkbox"];
-$arrlength=count($checkbox_select);
-$tmp=array(0,0,0,0,0,0,0,0,0);
-for($x=0;$x<$arrlength;$x++) {
-    switch ($checkbox_select[$x]) {
-        case 'option1':
-            $tmp[1]=true;
-            break;
-        case 'option2':
-            $tmp[2]=true;
-            break;
-        case 'option3':
-            $tmp[3]=true;
-            break;
-        case 'option4':
-            $tmp[4]=true;
-            break;
-        case 'option5':
-            $tmp[5]=true;
-            break;
-        case 'option6':
-            $tmp[6]=true;
-            break;
-        case 'option7':
-            $tmp[7]=true;
-            break;
-        case 'option8':
-            $tmp[8]=true;
-            break;
-        default:
-            break;
+  $con = mysql_connect("127.0.0.1:3306","root","root");
+  if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+  if(!empty($_POST["checkbox"])){
+    $checkbox_select=$_POST["checkbox"];
+    $arrlength=count($checkbox_select);
+    $tmp=array(0,0,0,0,0,0,0,0,0);
+    for($x=0;$x<$arrlength;$x++) {
+        switch ($checkbox_select[$x]) {
+            case 'option1':
+                $tmp[1]=true;
+                break;
+            case 'option2':
+                $tmp[2]=true;
+                break;
+            case 'option3':
+                $tmp[3]=true;
+                break;
+            case 'option4':
+                $tmp[4]=true;
+                break;
+            case 'option5':
+                $tmp[5]=true;
+                break;
+            case 'option6':
+                $tmp[6]=true;
+                break;
+            case 'option7':
+                $tmp[7]=true;
+                break;
+            case 'option8':
+                $tmp[8]=true;
+                break;
+            default:
+                break;
+        }
     }
-}
-mysql_select_db("news", $con);
-$sql="update users set toutiao={$tmp[1]},caijing={$tmp[2]},tiyu={$tmp[3]},yule={$tmp[4]},junshi={$tmp[5]},jiaoyu={$tmp[6]},gupiao={$tmp[7]},xingzuo={$tmp[8]} where userID={$_SESSION['userID']}";
-// echo $sql;
-$result = mysql_query($sql);
-if($result!=false){
-}
+    mysql_select_db("news", $con);
+    $sql="update users set toutiao={$tmp[1]},caijing={$tmp[2]},tiyu={$tmp[3]},yule={$tmp[4]},junshi={$tmp[5]},jiaoyu={$tmp[6]},gupiao={$tmp[7]},xingzuo={$tmp[8]} where userID={$_SESSION['userID']}";
+    // echo $sql;
+    $result = mysql_query($sql);
+    if($result!=false){
+    }
+  }
+  else{
+    
+  }
 }
 ?>
 

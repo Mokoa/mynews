@@ -1,21 +1,39 @@
 <?php require 'header.php' ?>
-<?php
-$channel=$_GET['channel'];
-?>
 <div class="am-g am-container padding-none">
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-8">
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
                 <ul class="am-list">
 <?php
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $keystr=$_POST['keystr'];
+}
+else{
+    $keystr=$_GET['keystr'];
+}
     $con = mysql_connect("127.0.0.1:3306","root","root");
     if (!$con)
       {
       die('Could not connect: ' . mysql_error());
       }
     mysql_select_db("news", $con);
-
-    $sql="select * from news where channel='".$channel."'";
+    // 先加入这个label
+    $sql="select * from labels where label='{$keystr}';";
+    // echo $sql;
+    $result = mysql_query($sql);
+    $count=mysql_num_rows($result);
+    // echo $count;
+    if($count>0){
+        // 找到了
+        $sql="update labels set clicks=clicks+1 where label='{$keystr}';";
+        $result = mysql_query($sql);
+    }
+    else{
+        $sql="insert into labels (label) values ('{$keystr}');";
+        $result = mysql_query($sql);
+    }
+// 查询相关新闻
+    $sql="select * from news where title like '%{$keystr}%';";
     $result = mysql_query($sql);
     $count=mysql_num_rows($result);
     $pageSize=7;
@@ -30,9 +48,14 @@ $channel=$_GET['channel'];
         $page=$_GET['page'];
     }
     $offset=$pageSize*($page-1);
-    $sql="select newsID,title,time,pic,content from news where channel='".$channel."' limit $offset,$pageSize";
+    $sql="select * from news where title like '%{$keystr}%' limit $offset,$pageSize;";
     $result = mysql_query($sql);
-    while($row = mysql_fetch_array($result)){
+    if($count==0){
+?>
+        <h3>没有找到您要的结果</h3>
+<?php
+    }
+     while($row = mysql_fetch_array($result)){
 ?>
     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
         <div class="am-u-sm-5 am-list-thumb">
@@ -40,7 +63,7 @@ $channel=$_GET['channel'];
 if($row['pic']){
 ?>
             <a target="_blank" href="news.php?id=<?php echo $row['newsID'];?>">
-                <img style="max-height:200px;" class="am-img-thumbnail am-radius " src="<?php echo $row['pic'];?>"/>
+                <img style="max-height:200px;" class="am-img-thumbnail am-radius" src="<?php echo $row['pic'];?>"/>
             </a>
 <?php
 }
@@ -60,6 +83,7 @@ if($row['pic']){
     </div>
 <?php
     }
+
     mysql_close();
 ?>
                 </ul>
@@ -77,11 +101,11 @@ if($row['pic']){
 for ($x=1; $x<=$pageCount; $x++) {
     if($x==$page)
           echo '<li class="am-active">
-                    <a href="?channel='.$channel.'&page='.$x.'" class="am-hide-sm">'.$x.'</a>
+                    <a href="page='.$x.'" class="am-hide-sm">'.$x.'</a>
                 </li>';
     else
         echo '<li >
-                <a href="?channel='.$channel.'&page='.$x.'" class="am-hide-sm">'.$x.'</a>
+                <a href="page='.$x.'" class="am-hide-sm">'.$x.'</a>
             </li>';
 } 
 ?>
@@ -97,5 +121,4 @@ for ($x=1; $x<=$pageCount; $x++) {
     </div>
     <?php require 'hotlabel.php' ?>
 </div>
-
 <?php require 'footer.php' ?>
